@@ -32,7 +32,12 @@ export function isICT(process: any): boolean {
             const regex = RegExp(patern, 'i');
             
             process.titulares?.forEach((holder: any) => {
-                match = regex.test(holder.nomeCompleto) ? true : match;
+                if(typeof holder === "string") {
+                    match = regex.test(holder) ? true : match;
+                } else {
+                    match = regex.test(holder.nomeCompleto) ? true : match;
+                }
+                    
             });
         });
     } else {
